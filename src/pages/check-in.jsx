@@ -32,7 +32,6 @@ export default class CheckIn extends Component {
         db_com.get_years()
         .then(years => this.setState({years}));
         this.setState({[c.event_id] : this.props.match.params.id});
-        console.log(this.props.match.params.id);
     }
     
     getSelectItems() {
@@ -179,5 +178,18 @@ export default class CheckIn extends Component {
     getUserId() {
         var user_email  = this.state[c.email];
         return user_email.substr(0, user_email.indexOf('@'));
+    }
+
+    resetState() {
+        this.setState({
+            [c.email]         : "",
+            [c.name]          : "",
+            [c.major]         : "",  
+            [c.email_list]    : false,
+            [c.display]       : false,
+            [c.email_error]   : false,
+            [c.name_error]    : false,
+            [c.selected_year] : null,
+        })
     }
 }
