@@ -132,7 +132,7 @@ export default class CheckIn extends Component {
         } else this.setState({[c.name_error]: false});
 
         if (this.submitUser()) {
-            alert("yay");
+            this.resetState();
         }
     }
 
