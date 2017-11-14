@@ -20,7 +20,8 @@ export default class CheckIn extends Component {
             [c.name_error]    : false,
             [c.years]         : [],
             [c.selected_year] : null,
-            [c.event_id]      : null,  
+            [c.event_id]      : null,
+            [c.event]         : null, 
 
         }
         this.button_text = c.button_1;
@@ -31,7 +32,7 @@ export default class CheckIn extends Component {
     componentWillMount() {
         db_com.get_years()
         .then(years => this.setState({years}));
-        this.setState({[c.event_id] : this.props.match.params.id});
+        this.setState({[c.event_id] : 0, [c.event] : "Scavenger Hunt Fall 17"});
     }
     
     getSelectItems() {
@@ -44,6 +45,7 @@ export default class CheckIn extends Component {
         var selectList = this.getSelectItems();
         return (
             <div className="wrapper">
+                <h2>{this.state.event}</h2>
                 <div className="card">
                     <TextField 
                         key="1" 

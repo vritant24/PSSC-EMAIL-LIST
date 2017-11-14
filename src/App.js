@@ -9,9 +9,7 @@ class App extends Component {
     render() {
       return (
         <div>
-          <Route path="/new"          component={EventAdd}/>
-          <Route path="/checkin/:id"  component={CheckIn}/>
-          <Route path="/"             component={EventSelect}/>
+          <Route path="/"             component={CheckIn}/>
         </div>
       )
     }
