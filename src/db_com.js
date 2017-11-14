@@ -25,7 +25,7 @@ var add_user = (user_id, name, major, email_list, year, event_id) => {
         &&  (typeof name        !== "string")
         &&  (typeof major       !== "string")
         &&  (typeof year        !== "string")
-        // &&  (typeof event_id    !== "number")
+        &&  (typeof event_id    !== "number")
         &&  (typeof email_list  !== "boolean")) {
 
             console.log("error adding user")
@@ -39,6 +39,8 @@ var add_user = (user_id, name, major, email_list, year, event_id) => {
         year: year,
     }); 
 
+    firebase.database().ref('events/' + event_id + '/users').push().set({user_id : user_id});
+    
     //add user
     return true;
 }
@@ -73,13 +75,15 @@ var add_event = (event_id, event_name, semester_year) => {
         return false;
     }
 
-    firebase.database().ref('events/' + event_id).set({
-        event_name: event_name,
-        semester_year: semester_year
-    }); 
-
-    //return event_id
-    return true;
+    return new Promise((resolve, reject) => {
+        firebase.database().ref('events/' + event_id).set({
+            event_name: event_name,
+            semester_year: semester_year,
+            users : {0 : "dummy"}
+        }).then(e => (
+            resolve()
+        ));
+    });
 }
 
 var get_years = () => {

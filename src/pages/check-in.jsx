@@ -20,6 +20,7 @@ export default class CheckIn extends Component {
             [c.name_error]    : false,
             [c.years]         : [],
             [c.selected_year] : null,
+            [c.event_id]      : null,  
 
         }
         this.button_text = c.button_1;
@@ -30,6 +31,8 @@ export default class CheckIn extends Component {
     componentWillMount() {
         db_com.get_years()
         .then(years => this.setState({years}));
+        this.setState({[c.event_id] : this.props.match.params.id});
+        console.log(this.props.match.params.id);
     }
     
     getSelectItems() {
@@ -170,7 +173,7 @@ export default class CheckIn extends Component {
     }
 
     submitUser() {
-        return db_com.add_user(this.getUserId(), this.state[c.name], this.state[c.major], this.state[c.email_list], this.state[c.selected_year])
+        return db_com.add_user(this.getUserId(), this.state[c.name], this.state[c.major], this.state[c.email_list], this.state[c.selected_year], this.state[c.event_id])
     }
 
     getUserId() {

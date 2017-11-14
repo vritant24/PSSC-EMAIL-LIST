@@ -11,7 +11,8 @@ var c = {
     email_error     : "email_error",
     event_list      : "event_list",
     years           : "years",
-    selected_year   : "selected_year"
+    selected_year   : "selected_year",
+    event_id        : "event_id"
 }
 
 export {
